@@ -1,0 +1,78 @@
+﻿<Page x:Class="WpfAppMarathon.Pages.AdminPages.UserPages.RunnerControl.EditRunnerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppMarathon.Pages.AdminPages.UserPages.RunnerControl"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditRunnerPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Label Content="Редактирование профиля бегуна" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="30"/>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Email"/>
+                <TextBlock Text="{Binding Curr.Runner.User.Email}" Margin="46 0" FontSize="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя"/>
+                <TextBox x:Name="TxtName" Text="{Binding Curr.Runner.User.FirstName}" Width="150" Margin="50 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Фамилия"/>
+                <TextBox x:Name="TxtLName" Text="{Binding Curr.Runner.User.LastName}" Width="150" Margin="24 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Пол"/>
+                <ComboBox Name="CMBGender" Width="150" Margin="51.5 0" DisplayMemberPath="Gender" Text="{Binding Genders.Gender}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Дата Рождения"/>
+                <DatePicker Name="DPDate" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Страна"/>
+                <ComboBox x:Name="CMBCountry" Width="150" Margin="35 0" DisplayMemberPath="CountryName" Text="{Binding Curr.Runner.Country.CountryName}"/>
+            </StackPanel>
+            <Label Content="Регистрационный статус" HorizontalAlignment="Center" FontSize="25"/>
+            <ComboBox x:Name="CMBStatus" Width="150" DisplayMemberPath="Status" Text="{Binding RegistrationStatus.Status}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Rectangle Width="80" Height="100" Fill="LightGreen" HorizontalAlignment="Right" Margin="50 0" />
+            <StackPanel>
+                <Label Content="Фото файл:" FontSize="20"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBox Width="150" Margin="5"/>
+                    <Button Content="Просмотр" Name="FileBut" Margin="5" Height="30"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Смена пароля" FontSize="25" HorizontalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="Оставьте эти поля, незаполненными, если вы не хотите изменять пароль." FontSize="15" HorizontalAlignment="Center" Foreground="Gray"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label Content="Пароль" FontSize="15"/>
+                        <PasswordBox x:Name="Pass1" Width="150" Margin="5 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label Content="Повторите пароль" FontSize="15"/>
+                        <PasswordBox x:Name="Pass2" Width="150" Margin="5 0"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button x:Name="SaveBtn" Content="Сохранить" Margin="5" Click="SaveBtn_Click"/>
+            <Button x:Name="CancelBtn" Content="Отмена" Margin="5" Click="CancelBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

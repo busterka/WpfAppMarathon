@@ -1,0 +1,56 @@
+﻿<Page x:Class="WpfAppMarathon.Pages.AdminPages.UserPages.UserControl.ControlUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppMarathon.Pages.AdminPages.UserPages.UserControl"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="ControlUserPage" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Управление пользователями" Grid.ColumnSpan="2" FontSize="30" HorizontalAlignment="Center"/>
+
+        <Button x:Name="AddNewUser" Content="Добавить пользователя" Grid.Row="1" Height="50" Width="171" HorizontalAlignment="Left" Click="AddNewUser_Click" Margin="0,50,0,50"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Фильтр по ролям" FontSize="15" Width="250"/>
+                <ComboBox Width="150" Name="RoleCombo" DisplayMemberPath="RoleName" ItemsSource="{Binding RoleOptions}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Сортировать по" FontSize="15" Width="250"/>
+                <ComboBox Width="150" Name="SortCombo"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Поиск" FontSize="15" Width="250"/>
+                <TextBox Width="150" Name="SearchTXB"/>
+            </StackPanel>
+            <Button x:Name="UpdateBtn" Content="Обновить" Width="135" Height="30" Margin="10" Click="UpdateBtn_Click"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" x:Name="DGUser" ItemsSource="{Binding UserView}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role.RoleName}" Width="*"/>
+                <DataGridTemplateColumn Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="EditButton" Content="EditBtn" Click="EditButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
